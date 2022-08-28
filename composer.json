@@ -1,0 +1,15 @@
+{
+    "name": "willi/master-mind",
+    "autoload": {
+        "psr-4": {
+            "Willi\\MasterMind\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "WILLIAM BOUET",
+            "email": "william.bouet.14@gmail.com"
+        }
+    ],
+    "require": {}
+}
