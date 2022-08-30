@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body onload="prepareGamePlay()">
 
     <aside>
         <div id="Title">Jeu du MasterMind</div>
@@ -42,7 +42,7 @@
     </aside>
     <main> 
 
-        <div>
+        <div id="test2">
             <table id= 'Proposal' >
                 <tbody  id="results">
                     <tr>
@@ -54,7 +54,7 @@
                 </tbody>
             </table>
         </div>
-        <div name='prepare_Proposal' class='view_table'>
+        <div name='prepare_Proposal' class='view_table' id='test'>
         <table >
             <tbody>
                 <tr>
