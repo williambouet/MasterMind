@@ -13,8 +13,46 @@ const colors =
 [
     'orange','yellow','blue','purple','red','green', 'pink','cyan',
     'maroon','violet','lime','gold','lightcoral','dodgerblue', 'chocolate','burlywood'
-]; //grey, white and black are forbiden.
+]; 
 
+//player can change nb of try 
+function nbTry() 
+{
+   
+    nbOfTry =  parseInt(document.getElementById('nbTry').textContent);
+    nbOfTry < 16 ? nbOfTry++ : nbOfTry = 4;
+    document.getElementById('nbTry').innerHTML = nbOfTry;
+    nbOfTry -= 1; 
+}
+
+function nbToFind()
+{
+    nbColorsToFind =  parseInt(document.getElementById('nbToFind').textContent);
+    nbColorsToFind < 9 ? nbColorsToFind++ : nbColorsToFind = 4;
+    document.getElementById('nbToFind').innerHTML = nbColorsToFind;
+}
+
+function nbOfColors() 
+{
+   
+    nbColorsInPalete =  parseInt(document.getElementById('nbOfColors').textContent);
+    nbColorsInPalete < 16 ? nbColorsInPalete++ : nbColorsInPalete = 9;
+    document.getElementById('nbOfColors').innerHTML = nbColorsInPalete;
+}
+
+function sameColors() 
+{
+    let valueSameColors = "";
+    valueSameColors = document.getElementById('sameColors').textContent;
+    if (valueSameColors === "oui") {
+        valueSameColors = "non";
+        sameColorsAuthorize = false;
+     } else {
+        valueSameColors = "oui";
+        sameColorsAuthorize = true;
+     }
+    document.getElementById('sameColors').innerHTML = valueSameColors;
+}
 
 //choose colors with a math.random
 //if 'same colors' is not authorize, restart until all colors are different
@@ -75,7 +113,7 @@ function verifAllDifferent(colorsProposal, nbColorsToFind, nbColorsToFind, sameC
     return true;
 }
 
-//create player's game
+//create player's game 
 function prepareGamePlay()
 {
     let table = document.createElement('table');
@@ -116,6 +154,7 @@ function prepareGamePlay()
     document.getElementById('blackCircle').appendChild(tableB);
 
     shuffle(nbColorsToFind, nbColorsInPalete, colorsToFind, sameColorsAuthorize);
+    document.getElementById('startGame').innerHTML = "";
 }
 
 //create and add a new line of player's proposal, with a specific id to each color's proposal (and each small clue)
