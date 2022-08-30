@@ -9,18 +9,12 @@ let lineNb = 0;
 let found = false;
 
 const clue = ['green', 'orange']
-const colors = [
+const colors = 
+[
     'orange','yellow','blue','purple','red','green', 'pink','cyan',
-    'maroon','violet','lime','gold','lightcoral','dodgerblue', 'chocolate','burlywood']; //grey, white and black are forbiden.
+    'maroon','violet','lime','gold','lightcoral','dodgerblue', 'chocolate','burlywood'
+]; //grey, white and black are forbiden.
 
-//TODO : 
-/*
-faire un shuffle après chaque réglage ou masquer et afficher le bouton soumettre quand les réglages sont validé
-ajouter fonction qui permet les doublons mais qui ne donne pas trop de orange
-ajouter la fonction du nombre de cercle
-si possible : corriger l'alignement
-
-*/
 
 //choose colors with a math.random
 //if 'same colors' is not authorize, restart until all colors are different
@@ -56,7 +50,6 @@ function getId(clicked_id)
         }      
     }
 }
-
 
 //verify if all color's proposal are given.
 function verifEmpty (nbColorsToFind, colorsProposal) 
@@ -219,12 +212,12 @@ function canPlay(lineNb, nbOfTry, nbColorsToFind, colorsToFind)
     }
 }
 
+//transfert player's color choice to an array
 function transfertColorToArr(colorsProposal, nbColorsToFind) {
     for (let index = 0; index < nbColorsToFind; index++) {
         colorsProposal[index] = document.getElementById('proposal' + index).style.background;
     }
 }
-
 
 //do lot of verifications, 
 function verifications() {

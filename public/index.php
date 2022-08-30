@@ -17,7 +17,7 @@
             <div id="blackCircle" class='view_table'></div>
             <div name='prepare_Proposal' class='view_table' id='greyCircle'></div>
             <div id='btn'><button type="button" class="button" onclick="verifications()">Soumettre</button></div>
-            <div class='cpt'>Nombre d'essai : <span id='compt' class='cpt'>0</span> </div>
+            <div class='cpt'>Coup(s) effectué(s) : <span id='compt' class='cpt'>0</span></div>
         </div>    
     </main>
        
