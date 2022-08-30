@@ -1,13 +1,10 @@
 
 body {
     display: flex;
-    
     justify-content: center;
-    flex-flow:row wrap;
-
 }
 
-header, footer {
+#title, footer {
     font-family : Arial, Helvetica, sans-serif;
     font-size: xx-large;
     text-align: center;
@@ -15,7 +12,19 @@ header, footer {
     width: 100%;
     height:10%;
     margin-bottom: 5%;
+}
 
+
+aside {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 10%;
+    width:40%;
+    height:700px;
 }
 
 main {
@@ -25,19 +34,15 @@ main {
     align-content: center;
     flex-wrap: wrap;
     justify-content: flex-end;
-
     margin-left: 10%;
-    width: 60%;
+    width: 100%;
     height:700px;
-
 }
 
 .cpt, #btn {
-
     font-family : Arial, Helvetica, sans-serif ;
     font-size: small;
     text-align: center;
-
     height:10%;
     margin-top: 5%;
     font-size: larger;
@@ -67,7 +72,6 @@ main {
 
 
 .button {
-
     padding: 15px 25px;
     font-family : Arial, Helvetica, sans-serif ;
     font-size: 24px;

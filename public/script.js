@@ -1,20 +1,31 @@
-let colors = ['orange','yellow','blue','purple','red','green', 'pink','cyan']; //grey, white and black are forbiden.
+let sameColorsAuthorize = false;
+let nbColorsToFind = 4;
+let nbOfTry = 5 - 1; //-1 because we include 0 to count
+let nbColorsInPalete = 16;
+
 let colorsToFind = [];
 let lineNb = 0;
 let found = false;
-let sameColorsAuthorize = false;
-let nbColorsToFind = 4;
-let nbOfTry = 11;
-let clue = ['green', 'orange']
+
+const clue = ['green', 'orange']
+const colors = [
+    'orange','yellow','blue','purple','red','green', 'pink','cyan',
+    'maroon','violet','lime','gold','lightcoral','dodgerblue', 'chocolate','burlywood']; //grey, white and black are forbiden.
 
 shuffle();
+
+
+//TODO : 
+/*
+faire un shuffle après chaque réglage
+*/
 
 //choose colors with a math.random
 //if 'same colors' is not authorize, restart until all colors are different
 function shuffle() 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
-        colorsToFind[index] = colors[Math.floor(Math.random() * colors.length)];       
+        colorsToFind[index] = colors[Math.floor(Math.random() * nbColorsInPalete)];       
     }
 
     if (!sameColorsAuthorize){
@@ -36,9 +47,9 @@ function getId(clicked_id)
         form.style.background = colors[0];
         exit();
     }
-    for (let index = 0; index < colors.length; index++) {
+    for (let index = 0; index < nbColorsInPalete; index++) {
         if (form.style.background == colors[index]) {
-            index == (colors.length - 1) ? index = 0 : index += 1;
+            index == (nbColorsInPalete - 1) ? index = 0 : index += 1;
             form.style.background = colors[index];
         }      
     }
