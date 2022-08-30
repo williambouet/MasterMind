@@ -13,9 +13,6 @@ const colors = [
     'orange','yellow','blue','purple','red','green', 'pink','cyan',
     'maroon','violet','lime','gold','lightcoral','dodgerblue', 'chocolate','burlywood']; //grey, white and black are forbiden.
 
-shuffle();
-prepareGamePlay();
-
 //TODO : 
 /*
 faire un shuffle après chaque réglage ou masquer et afficher le bouton soumettre quand les réglages sont validé
@@ -27,7 +24,7 @@ si possible : corriger l'alignement
 
 //choose colors with a math.random
 //if 'same colors' is not authorize, restart until all colors are different
-function shuffle() 
+function shuffle(nbColorsToFind, nbColorsInPalete, colorsToFind, sameColorsAuthorize) 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
         colorsToFind[index] = colors[Math.floor(Math.random() * nbColorsInPalete)];       
@@ -35,7 +32,7 @@ function shuffle()
 
     if (!sameColorsAuthorize){
         if (new Set(colorsToFind).size !== colorsToFind.length) {
-            shuffle();
+            shuffle(nbColorsToFind, nbColorsInPalete, colorsToFind, sameColorsAuthorize);
         }
     }
 }
@@ -62,7 +59,7 @@ function getId(clicked_id)
 
 
 //verify if all color's proposal are given.
-function verifEmpty () 
+function verifEmpty (nbColorsToFind, colorsProposal) 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
         if (!colorsProposal[index]) {
@@ -74,7 +71,7 @@ function verifEmpty ()
 }
 
 //if 'same colors' is not authorize, verify if color's proposal are all different.
-function verifAllDifferent() 
+function verifAllDifferent(colorsProposal, nbColorsToFind, nbColorsToFind, sameColorsAuthorize) 
 {
     if (!sameColorsAuthorize) {
         if ((new Set(colorsProposal).size !== nbColorsToFind)) {
@@ -104,7 +101,7 @@ function prepareGamePlay()
         tr.appendChild(td);      
     }
     table.appendChild(tr);
-    document.getElementById('test').appendChild(table);
+    document.getElementById('greyCircle').appendChild(table);
 
     let tableB = document.createElement('table');
     let theadB = document.createElement('thead');
@@ -116,17 +113,19 @@ function prepareGamePlay()
     tableB.appendChild(tbodyB);
 
     for (let index = 0; index < nbColorsToFind; index++){
-        const td = document.createElement("td");
-        td.classList.add("black_circle");
-        td.setAttribute("id",'bc'+ index);
-        tr.appendChild(td);      
+        const tdB = document.createElement("td");
+        tdB.classList.add("black_circle");
+        tdB.setAttribute("id",'bc'+ index);
+        trB.appendChild(tdB);      
     }
-    tableB.appendChild(tr);
-    document.getElementById('test2').appendChild(tableB);
+    tableB.appendChild(trB);
+    document.getElementById('blackCircle').appendChild(tableB);
+
+    shuffle(nbColorsToFind, nbColorsInPalete, colorsToFind, sameColorsAuthorize);
 }
 
 //create and add a new line of player's proposal, with a specific id to each color's proposal (and each small clue)
-function addLineProposal(lineNb)
+function addLineProposal(lineNb, nbColorsToFind)
 {
     let table = document.createElement('table');
     let thead = document.createElement('thead');
@@ -150,13 +149,14 @@ function addLineProposal(lineNb)
         tbody.appendChild(td2);      
     }
     tr.appendChild(table);
+
     const containerForm = document.getElementById("results");
     containerForm.appendChild(tr);
-    document.getElementById('Proposal').appendChild(containerForm);
+    document.getElementById('blackCircle').appendChild(containerForm);
 }
 
 //put color's proposal to the new line
-function putColorProposal() 
+function putColorProposal(colorsProposal, nbColorsToFind) 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
         document.getElementById('line' + lineNb + '_color'+ index).style.background = colorsProposal[index];
@@ -164,13 +164,13 @@ function putColorProposal()
 }
 
 //count number of player's proposal
-function compt() 
+function compt(lineNb) 
 {
     document.getElementById('compt').innerHTML = lineNb + 1 ;
 }
 
 //give a clue on small circle, green is the good color at the right place, orange is good color but not the right place 
-function smallResult() 
+function smallResult(nbColorsToFind, colorsToFind, lineNb) 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
         if (colorsProposal[index] == colorsToFind[index] ) {
@@ -182,7 +182,7 @@ function smallResult()
 }
 
 //show the colors to find
-function discover() 
+function discover(nbColorsToFind, colorsToFind) 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
         document.getElementById('bc' + index).style.background = colorsToFind[index];
@@ -190,7 +190,7 @@ function discover()
 }
 
 //verify if player found the colors, if yes -> alert the player
-function isItFind() 
+function isItFind(nbColorsToFind, colorsToFind, found, colorsProposal) 
 {
     for (let index = 0; index < nbColorsToFind; index++) {
         if (colorsProposal[index] != colorsToFind[index]) {
@@ -198,11 +198,11 @@ function isItFind()
         }
     }
     if (!found) {
-        discover();
-        addLineProposal();
-        putColorProposal();
-        smallResult();
-        compt();
+        discover(nbColorsToFind, colorsToFind);
+        addLineProposal(lineNb, nbColorsToFind);
+        putColorProposal(colorsProposal, nbColorsToFind);
+        smallResult(nbColorsToFind, colorsToFind, lineNb);
+        compt(lineNb);
         found = true; 
     }
     alert("Bravo vous avez trouvé !");
@@ -210,16 +210,16 @@ function isItFind()
 }
 
 //verify if player can do another proposal, otherwise we alert and show him the colors to find
-function canPlay() 
+function canPlay(lineNb, nbOfTry, nbColorsToFind, colorsToFind) 
 {
     if (lineNb > nbOfTry) {
-        discover()
+        discover(nbColorsToFind, colorsToFind)
         alert("Vous avez épuisé tous vos coups.\nRecharger la page pour jouer à nouveau.")        
         exit();
     }
 }
 
-function transfertColorToArr() {
+function transfertColorToArr(colorsProposal, nbColorsToFind) {
     for (let index = 0; index < nbColorsToFind; index++) {
         colorsProposal[index] = document.getElementById('proposal' + index).style.background;
     }
@@ -231,27 +231,23 @@ function verifications() {
 
     lineNb = parseInt(document.getElementById('compt').textContent);    
 
-    transfertColorToArr();
-    /*
-    colorsProposal[1] = document.getElementById('formProposal2').style.background;
-    colorsProposal[2] = document.getElementById('formProposal3').style.background;
-    colorsProposal[3] = document.getElementById('formProposal4').style.background;    
-    */
-    !verifEmpty() ? "": exit();// doit retourner false
+    transfertColorToArr(colorsProposal, nbColorsToFind);
+
+    !verifEmpty(nbColorsToFind, colorsProposal) ? "": exit();// doit retourner false
     
-    verifAllDifferent() ? "": exit();//doit retourner true
+    verifAllDifferent(colorsProposal, nbColorsToFind, nbColorsToFind, sameColorsAuthorize) ? "": exit();//doit retourner true
    
-    canPlay();
+    canPlay(lineNb, nbOfTry, nbColorsToFind, colorsToFind);
     
-    isItFind() ? exit() : "";
+    isItFind(nbColorsToFind, colorsToFind, found, colorsProposal) ? exit() : "";
 
-    addLineProposal();
+    addLineProposal(lineNb, nbColorsToFind);
 
-    putColorProposal();
+    putColorProposal(colorsProposal, nbColorsToFind);
 
-    smallResult();
+    smallResult(nbColorsToFind, colorsToFind, lineNb);
 
-    compt();
+    compt(lineNb);
 }
 
 

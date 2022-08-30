@@ -11,7 +11,15 @@
 </head>
 
 <body onload="prepareGamePlay()">
+<main> 
+        <div id="gamePlay">
+            <div id="blackCircle" class='view_table'></div>
 
+            <div name='prepare_Proposal' class='view_table' id='greyCircle'></div>
+            <div id='btn'><button type="button" class="button" onclick="verifications()">Soumettre</button></div>
+            <div class='cpt'>Nombre d'essai : <span id='compt' class='cpt'>0</span> </div>
+        </div>    
+    </main>
     <aside>
         <div id="Title">Jeu du MasterMind</div>
         <div id='parameters'>Paramètres du jeu</div>
@@ -40,37 +48,7 @@
             </select>
         </form>
     </aside>
-    <main> 
 
-        <div id="test2">
-            <table id= 'Proposal' >
-                <tbody  id="results">
-                    <tr>
-                        <td class="black_circle" id="bc0"></td>
-                        <td class="black_circle" id="bc1"></td>
-                        <td class="black_circle" id="bc2"></td>
-                        <td class="black_circle" id="bc3"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div name='prepare_Proposal' class='view_table' id='test'>
-        <table >
-            <tbody>
-                <tr>
-                    <td id='formProposal1' class="circle" onclick="getId(this.id)" ></td>
-                    <td id='formProposal2' class="circle" onclick="getId(this.id)" ></td>
-                    <td id='formProposal3' class="circle" onclick="getId(this.id)" ></td>
-                    <td id='formProposal4' class="circle" onclick="getId(this.id)" ></td>                    
-                </tr>
-            </tbody>
-        </table>
-        </div>
-            <div id='btn'><button type="button" class="button" onclick="verifications()">Soumettre</button></div>
-            <div class='cpt'>Nombre d'essai : <span id='compt' class='cpt'>0</span> </div>
-            
-            
-    </main>
     
     <footer></footer>
 </body>
