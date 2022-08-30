@@ -74,6 +74,7 @@ function verifAllDifferent(colorsProposal, nbColorsToFind, nbColorsToFind, sameC
     }
     return true;
 }
+
 //create player's game
 function prepareGamePlay()
 {
