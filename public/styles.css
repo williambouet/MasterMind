@@ -2,9 +2,10 @@
 body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
-#title, footer {
+header, footer {
     font-family : Arial, Helvetica, sans-serif;
     font-size: xx-large;
     text-align: center;
@@ -15,17 +16,6 @@ body {
 }
 
 
-aside {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-left: 10%;
-      height:700px;
-}
-
 main {
     display: flex;
     align-items: center;
@@ -34,14 +24,17 @@ main {
     flex-wrap: wrap;
     justify-content: flex-end;
     margin: 10%;
-
     height:700px;
 }
+
+.view_table {
+    width: 300px;
+}
+
 .table {
     display: flex;
     flex-direction: column;
 }
-
 
 .cpt, #btn {
     font-family : Arial, Helvetica, sans-serif ;

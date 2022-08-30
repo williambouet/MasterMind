@@ -1,6 +1,6 @@
 let sameColorsAuthorize = true;
-let nbColorsToFind = 5;
-let nbOfTry = 5 - 1; //-1 because we include 0 to count
+let nbColorsToFind = 6;
+let nbOfTry = 12 - 1; //-1 because we include 0 to count
 let nbColorsInPalete = 16;
 
 let colorsToFind = [];
